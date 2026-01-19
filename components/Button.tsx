@@ -20,6 +20,7 @@ const Button = ({ label, secondary, fullWidth, large, onClick, disabled, outline
             hover:opacity-80
             transition
             border-2
+            cursor-pointer
             ${fullWidth ? 'w-full' : 'w-fit'}
             ${secondary ? 'bg-white' : 'bg-sky-500'}
             ${secondary ? 'text-black' : 'text-white'}
