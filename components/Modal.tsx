@@ -32,7 +32,7 @@ const Modal = ({
     }, [disabled, onClose]);
 
     const handleSubmit = useCallback(() => {
-        if (disabled) {
+        if (!disabled) {
             onSubmit();
         }
     }, [disabled, onSubmit]);
