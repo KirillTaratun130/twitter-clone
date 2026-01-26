@@ -5,6 +5,9 @@ import useEditModal from "@/hooks/useEditModal";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Modal from "@/components/Modal";
+import Input from "@/components/Input";
+import ImageUpload from "@/components/ImageUpload";
+
 
 const EditModal = () => {
     const { data: currentUser } = useCurrentUser();
@@ -56,7 +59,37 @@ const EditModal = () => {
         } finally {
             setIsLoading(false);
         }
-    }, [name, username, bio, coverImage, profileImage, mutateFetchedUser, editModal])
+    }, [name, username, bio, coverImage, profileImage, mutateFetchedUser, editModal]);
+
+    const bodyContent = (
+        <div className='flex flex-col gap-4'>
+            <ImageUpload
+                value={profileImage}
+                disabled={isLoading}
+                onChange={(image) => setProfileImage(image)}
+                label='Upload profile image' />
+            <ImageUpload
+                value={coverImage}
+                disabled={isLoading}
+                onChange={(image) => setCoverImage(image)}
+                label='Upload cover image' />
+            <Input
+                placeholder='Name'
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                disabled={isLoading} />
+            <Input
+                placeholder='Username'
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                disabled={isLoading} />
+            <Input
+                placeholder='Bio'
+                onChange={(e) => setBio(e.target.value)}
+                value={bio}
+                disabled={isLoading} />
+        </div>
+    )
 
     return (
         <Modal
@@ -65,7 +98,8 @@ const EditModal = () => {
             title='Edit your profile'
             actionLabel='Save'
             onClose={editModal.onClose}
-            onSubmit={onSubmit} />
+            onSubmit={onSubmit}
+            body={bodyContent} />
     );
 };
 
