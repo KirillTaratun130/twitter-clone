@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import useRegisterModal from "@/hooks/useRegisterModal";
 import useLoginModal from "@/hooks/useLoginModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import usePosts from "@/hooks/usePosts";
+import usePost from "@/hooks/usePost";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Button from "@/components/Button";
@@ -19,7 +19,7 @@ const Form = ({ placeholder, isComment, postId }: FormProps) => {
     const loginModal = useLoginModal();
 
     const { data: currentUser } = useCurrentUser();
-    const { mutate: mutatePosts } = usePosts();
+    const { mutate: mutatePosts } = usePost();
 
     const [body, setBody] = useState('');
     const [isLoading, setIsLoading] = useState(false);

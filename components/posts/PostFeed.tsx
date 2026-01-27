@@ -1,13 +1,13 @@
 import React from 'react';
-import usePosts from "@/hooks/usePosts";
 import PostItem from "@/components/posts/PostItem";
+import usePosts from "@/hooks/usePosts";
 
 interface PostFeedProps {
     userId?: string;
 }
 
 const PostFeed = ({ userId }: PostFeedProps) => {
-    const { data: posts = []} = usePosts(userId);
+    const { data: posts = []} = usePosts(userId)
 
 
     return (
