@@ -4,6 +4,7 @@ import { IconType } from "react-icons";
 import {useRouter} from "next/navigation";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
+import {BsDot} from "react-icons/bs";
 
 interface SidebarItemProps {
     label: string;
@@ -11,9 +12,10 @@ interface SidebarItemProps {
     icon: IconType;
     onClick?: () => void;
     auth?: boolean;
+    alert?: boolean;
 }
 
-const SidebarItem = ({ label, href, icon: Icon, onClick, auth }: SidebarItemProps) => {
+const SidebarItem = ({ label, href, icon: Icon, onClick, auth, alert }: SidebarItemProps) => {
     const { data: currentUser } = useCurrentUser();
     const loginModal = useLoginModal();
     const router = useRouter();
@@ -46,6 +48,7 @@ const SidebarItem = ({ label, href, icon: Icon, onClick, auth }: SidebarItemProp
             cursor-pointer
             lg:hidden'>
                 <Icon size={25} color='white' />
+                { alert ? <BsDot className='text-sky-500 absolute -top-4 left-0' size={70} /> : null }
             </div>
             <div className='
             relative
@@ -59,6 +62,7 @@ const SidebarItem = ({ label, href, icon: Icon, onClick, auth }: SidebarItemProp
             cursor-pointer'>
                 <Icon size={28} color='white' />
                 <p className='text-white text-xl'>{ label }</p>
+                { alert ? <BsDot className='text-sky-500 absolute -top-4 left-0' size={70} /> : null }
             </div>
         </div>
     );
